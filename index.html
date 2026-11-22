@@ -6,11 +6,11 @@
   <meta name="color-scheme" content="light dark">
   <meta name="description" content="Explore the Jiangzhou School Library reader demonstration.">
   <title>Catalog · Jiangzhou School Library</title>
-  <link rel="stylesheet" href="./assets/reader.css">
+  <link rel="stylesheet" href="./assets/reader.css?v=2">
   <link rel="preload" href="./assets/Goetheanum-Variabel-v2.9.woff2" as="font" type="font/woff2" crossorigin>
   <script defer src="./assets/messages.js"></script>
   <script defer src="./assets/collection.js"></script>
-  <script defer src="./assets/reader-demo.js"></script>
+  <script defer src="./assets/reader-demo.js?v=2"></script>
 </head>
 <body>
   <a class="skip" href="#main" id="skip-link">Skip to main content</a>
@@ -24,7 +24,7 @@
         <input id="query" name="q" type="search" maxlength="160" placeholder="Title, author, keyword, or ISBN" value="">
         <label class="sr" for="availability">Availability</label><select id="availability" name="status"><option value="" selected>Any status</option><option value="available">Available</option><option value="held">Reserved</option><option value="out">On loan</option></select>
         <button class="button primary">Search</button></form></div>
-        <img src="./assets/reading-garden-small.webp" alt="" width="600" height="400"></section>
+        <img src="./assets/catalog-reading-room.webp" alt="" width="900" height="600"></section>
         <section aria-labelledby="results-heading" class="results"><h2 id="results-heading">Books</h2>
         <div class="books"><article class="book-card"><span class="book-icon" aria-hidden="true"><i></i></span>
         <div class="book-copy"><span class="status available">Available</span><h3><a data-view href="?view=book&amp;id=wind" >The Wind in the Willows</a></h3>

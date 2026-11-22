@@ -13,3 +13,5 @@ Open `index.html` in a browser, or run `python -m http.server 8000 --bind 127.0.
 3. Open the site URL that GitHub displays after publication. Links and assets work under the repository's path. The demo runs entirely in the browser.
 
 The Goetheanum typeface license accompanies the font in `assets/OFL-Goetheanum.txt`.
+
+Catalog banner photo by Ɱ, cropped from [Wagnalls Memorial Library reading room](https://commons.wikimedia.org/wiki/File:Wagnalls_Memorial_Library_reading_room.jpg), [CC0 1.0 Universal](https://creativecommons.org/publicdomain/zero/1.0/).

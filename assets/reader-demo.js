@@ -102,7 +102,7 @@ function catalogPage(p) {
         <div class="book-copy">${badge(statusOf(book))}<h3>${viewLink("book",book.title,{ id:book.id })}</h3>
         <p>${escapeHTML(book.author)}</p><small>${escapeHTML(genre(book))}</small></div></article>`).join("");
     return `<section class="catalog-intro"><div><h1>${t("catalog_heading")}</h1><p>${t("catalog_copy")}</p>${searchForm("catalog",q,filter)}</div>
-        <img src="./assets/reading-garden-small.webp" alt="" width="600" height="400"></section>
+        <img src="./assets/catalog-reading-room.webp" alt="" width="900" height="600"></section>
         <section aria-labelledby="results-heading" class="results"><h2 id="results-heading">${t("results")}</h2>
         ${results.length ? `<div class="books">${cards}</div>` : `<p class="empty">${t("no_books")}</p>`}</section>`;
 }
