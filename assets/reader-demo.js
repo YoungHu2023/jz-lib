@@ -5,6 +5,7 @@ const modes = ["system", "light", "dark"];
 const sections = ["catalog", "loans", "holds"];
 const pathKey = location.pathname.replace(/index\.html$/, "");
 const storageKey = `jzlib-reader-demo-v1:${pathKey}`;
+const offline = location.protocol === "file:";
 const initialParams = new URLSearchParams(location.search);
 const byId = new Map(catalog.map(book => [book.id, book]));
 const htmlEntities = { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" };
@@ -13,7 +14,7 @@ const escapeHTML = value => String(value ?? "").replace(/[&<>"']/g, char => html
 function initialState() {
     const now = Date.now();
     return {
-        lang: "en", appearance: "system", signedIn: true,
+        lang: document.documentElement.lang === "zh-CN" ? "zh-CN" : "en", appearance: "system", signedIn: true,
         loans: [
             { id: "moss", borrowed: now - 12 * day, due: now + 9 * day, renewed: false },
             { id: "walden", borrowed: now - 8 * day, due: now + 13 * day, renewed: false },
@@ -48,8 +49,11 @@ const dateText = (value, time = false) => new Intl.DateTimeFormat(state.lang, {
 }).format(value);
 const main = document.getElementById("main");
 
-function params() { return new URLSearchParams(location.search); }
-function urlFor(view, extra = {}) { return "?" + new URLSearchParams({ view, ...extra }); }
+function params() {
+    const query = offline && location.hash.startsWith("#?") ? location.hash.slice(2) : location.search;
+    return new URLSearchParams(query);
+}
+function urlFor(view, extra = {}) { return (offline ? "#?" : "?") + new URLSearchParams({ view, ...extra }); }
 function viewLink(view, label, extra = {}, attrs = "") {
     return `<a data-view href="${escapeHTML(urlFor(view, extra))}" ${attrs}>${escapeHTML(label)}</a>`;
 }
@@ -72,7 +76,7 @@ function header(view) {
     const prefs = `<div class="preferences">
         <label><span class="sr">${t("language")}</span><select id="language">${options([["en","English"],["zh-CN","简体中文"]],state.lang)}</select></label>
         <label><span class="sr">${t("theme")}</span><select id="appearance">${options(modes.map(s => [s,t(s)]),state.appearance)}</select></label></div>`;
-    document.getElementById("topbar").innerHTML = `<a class="brand" data-view href="?view=catalog"><span class="brand-mark" aria-hidden="true"><i></i><i></i></span><span>${t("brand")}</span></a>
+    document.getElementById("topbar").innerHTML = `<a class="brand" data-view href="${urlFor("catalog")}"><span class="brand-mark" aria-hidden="true"><i></i><i></i></span><span>${t("brand")}</span></a>
         ${state.signedIn ? `<nav aria-label="${t("main_nav")}">${nav}</nav>` : ""}
         <div class="header-tools">${prefs}${state.signedIn ? `<button class="button subtle signout" data-action="signout">${t("signout")}</button>` : ""}</div>`;
 }
@@ -199,14 +203,14 @@ document.addEventListener("submit", e => {
     e.preventDefault(); flash = "";
     const values = new URLSearchParams(new FormData(e.target));
     for (const key of ["q", "status"]) if (!values.get(key)) values.delete(key);
-    navigate("?" + values.toString());
+    navigate((offline ? "#?" : "?") + values.toString());
 });
 document.addEventListener("change", e => {
     const target = e.target;
     if (target.id === "language" && Object.hasOwn(messages,target.value)) {
         state.lang = target.value;
         const url = new URL(location.href);
-        if (url.searchParams.has("lang")) { url.searchParams.set("lang",state.lang); history.replaceState(null,"",url); }
+        if (!offline && url.searchParams.has("lang")) { url.searchParams.set("lang",state.lang); history.replaceState(null,"",url); }
     } else if (target.id === "appearance" && modes.includes(target.value)) state.appearance = target.value;
     else return;
     flash = ""; save(); draw(); document.getElementById(target.id).focus();

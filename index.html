@@ -14,8 +14,43 @@
 </head>
 <body>
   <a class="skip" href="#main" id="skip-link">Skip to main content</a>
-  <header class="topbar"><div class="width topbar-inner" id="topbar"></div></header>
-  <main class="width" id="main" tabindex="-1"><noscript>Enable JavaScript to explore the library demonstration. 请启用 JavaScript 以浏览图书馆演示。</noscript></main>
-  <footer class="width footer"><span id="footer-brand"></span><span id="footer-demo"></span></footer>
+  <header class="topbar"><div class="width topbar-inner" id="topbar"><a class="brand" data-view href="?view=catalog"><span class="brand-mark" aria-hidden="true"><i></i><i></i></span><span>Jiangzhou School Library</span></a>
+        <nav aria-label="Reader navigation"><a data-view href="?view=catalog" aria-current="page">Catalog</a><a data-view href="?view=loans" >My loans</a><a data-view href="?view=holds" >My reservations</a></nav>
+        <div class="header-tools"><div class="preferences">
+        <label><span class="sr">Language</span><select id="language"><option value="en" selected>English</option><option value="zh-CN">简体中文</option></select></label>
+        <label><span class="sr">Appearance</span><select id="appearance"><option value="system" selected>System</option><option value="light">Light</option><option value="dark">Dark</option></select></label></div><button class="button subtle signout" data-action="signout">Sign out</button></div></div></header>
+  <main class="width" id="main" tabindex="-1"><section class="catalog-intro"><div><h1>Explore the collection</h1><p>Find books by title, author, keyword, or ISBN.</p><form class="search " data-search="catalog" method="get">
+        <input type="hidden" name="view" value="catalog"><label class="sr" for="query">Search the catalog</label>
+        <input id="query" name="q" type="search" maxlength="160" placeholder="Title, author, keyword, or ISBN" value="">
+        <label class="sr" for="availability">Availability</label><select id="availability" name="status"><option value="" selected>Any status</option><option value="available">Available</option><option value="held">Reserved</option><option value="out">On loan</option></select>
+        <button class="button primary">Search</button></form></div>
+        <img src="./assets/reading-garden-small.webp" alt="" width="600" height="400"></section>
+        <section aria-labelledby="results-heading" class="results"><h2 id="results-heading">Books</h2>
+        <div class="books"><article class="book-card"><span class="book-icon" aria-hidden="true"><i></i></span>
+        <div class="book-copy"><span class="status available">Available</span><h3><a data-view href="?view=book&amp;id=wind" >The Wind in the Willows</a></h3>
+        <p>Kenneth Grahame</p><small>Children’s literature</small></div></article><article class="book-card"><span class="book-icon" aria-hidden="true"><i></i></span>
+        <div class="book-copy"><span class="status out">On loan</span><h3><a data-view href="?view=book&amp;id=moss" >Gathering Moss</a></h3>
+        <p>Robin Wall Kimmerer</p><small>Natural history</small></div></article><article class="book-card"><span class="book-icon" aria-hidden="true"><i></i></span>
+        <div class="book-copy"><span class="status held">Reserved</span><h3><a data-view href="?view=book&amp;id=earthsea" >A Wizard of Earthsea</a></h3>
+        <p>Ursula K. Le Guin</p><small>Fantasy</small></div></article><article class="book-card"><span class="book-icon" aria-hidden="true"><i></i></span>
+        <div class="book-copy"><span class="status out">On loan</span><h3><a data-view href="?view=book&amp;id=invisible" >Invisible Cities</a></h3>
+        <p>Italo Calvino</p><small>Fiction</small></div></article><article class="book-card"><span class="book-icon" aria-hidden="true"><i></i></span>
+        <div class="book-copy"><span class="status available">Available</span><h3><a data-view href="?view=book&amp;id=design" >The Design of Everyday Things</a></h3>
+        <p>Don Norman</p><small>Art &amp; design</small></div></article><article class="book-card"><span class="book-icon" aria-hidden="true"><i></i></span>
+        <div class="book-copy"><span class="status out">On loan</span><h3><a data-view href="?view=book&amp;id=walden" >Walden and Civil Disobedience</a></h3>
+        <p>Henry David Thoreau</p><small>Essays</small></div></article><article class="book-card"><span class="book-icon" aria-hidden="true"><i></i></span>
+        <div class="book-copy"><span class="status available">Available</span><h3><a data-view href="?view=book&amp;id=secret" >The Secret Garden</a></h3>
+        <p>Frances Hodgson Burnett</p><small>Children’s literature</small></div></article><article class="book-card"><span class="book-icon" aria-hidden="true"><i></i></span>
+        <div class="book-copy"><span class="status available">Available</span><h3><a data-view href="?view=book&amp;id=braiding" >Braiding Sweetgrass</a></h3>
+        <p>Robin Wall Kimmerer</p><small>Natural history</small></div></article><article class="book-card"><span class="book-icon" aria-hidden="true"><i></i></span>
+        <div class="book-copy"><span class="status available">Available</span><h3><a data-view href="?view=book&amp;id=flower" >The Flower-Fed Buffaloes</a></h3>
+        <p>Vachel Lindsay</p><small>Poetry</small></div></article><article class="book-card"><span class="book-icon" aria-hidden="true"><i></i></span>
+        <div class="book-copy"><span class="status held">Reserved</span><h3><a data-view href="?view=book&amp;id=momo" >Momo</a></h3>
+        <p>Michael Ende</p><small>Fantasy</small></div></article><article class="book-card"><span class="book-icon" aria-hidden="true"><i></i></span>
+        <div class="book-copy"><span class="status available">Available</span><h3><a data-view href="?view=book&amp;id=xiangtu" >乡土中国</a></h3>
+        <p>费孝通</p><small>Social sciences</small></div></article><article class="book-card"><span class="book-icon" aria-hidden="true"><i></i></span>
+        <div class="book-copy"><span class="status available">Available</span><h3><a data-view href="?view=book&amp;id=chaohua" >朝花夕拾</a></h3>
+        <p>鲁迅</p><small>Essays</small></div></article></div></section></main>
+  <footer class="width footer"><span id="footer-brand">Jiangzhou School Library</span><span id="footer-demo">Reader demo · Sample data</span></footer>
 </body>
 </html>
